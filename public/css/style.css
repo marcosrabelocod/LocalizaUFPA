@@ -1,0 +1,9 @@
+body, html{
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Faz com que o body e o html ocupem 100% da altura */
+}
+#map {
+    width: 100%;  /* 100% da largura da tela */
+    height: 92%; /* 100% da altura da tela */
+ }
