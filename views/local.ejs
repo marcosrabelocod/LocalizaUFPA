@@ -10,8 +10,29 @@
 </head>
 <body>
     <header><%- include ('./partials/nav.ejs')%></header>
-    <div id="map"></div>
-<!-- Code injected by live-server -->
+    <main>
+        <div class="container mt-4">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">Detalhes da Localização</h5>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
+                    <h5 class="card-title">Informações</h5>
+                    <p><strong>Local:</strong></p>
+                    <p><strong>Origem:</strong></p>
+                    <p><strong>Setor:</strong></p>
+                    <p><strong>Portão:</strong></p>
+                  </div>
+                  <div class="col-12 col-md-6 text-center">
+                    <div id="map" class="local"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </main>
 
 </body>
 <script src="/js/webmap.js"></script>
