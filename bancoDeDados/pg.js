@@ -35,4 +35,16 @@ async function selectId(tabela, valor) {
     client.release(); // Libera a conexão para o pool
   }
 }
-module.exports={selectLocais, selectId}
+
+//FUNÇÃO DA BARRA DE PESQUISA
+async function selectPesquisa(name) {
+  const client = await pool.connect(); // Conectar ao banco
+  try {
+    const sql = 'SELECT Id, Nome FROM localidade WHERE Nome LIKE $1'; // Usando o parâmetro $1
+    const res = await client.query(sql, [`%${name}%`]); // Passando o parâmetro como uma string com '%'
+    return res.rows; // Retorna todos os registros encontrados
+  } finally {
+    client.release(); // Libera a conexão para o pool
+  }
+}
+module.exports={selectLocais, selectId, selectPesquisa}

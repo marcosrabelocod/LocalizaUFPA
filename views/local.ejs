@@ -20,10 +20,15 @@
                 <div class="row">
                   <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
                     <h5 class="card-title">Informações</h5>
-                    <p><strong>Local:</strong></p>
-                    <p><strong>Origem:</strong></p>
-                    <p><strong>Setor:</strong></p>
-                    <p><strong>Portão:</strong></p>
+                    <p><strong>Local:</strong> <%=local.nome%></p>
+                    <p>
+                      <strong>Origem:</strong> 
+                      <a href="<%= origem.id%>" class="btn btn-outline-secondary">
+                        <%= origem.nome%>                      
+                      </a>
+                    </p>
+                    <p><strong>Setor:</strong> <%=setor.nome%></p>
+                    <p><strong>Portão:</strong> <%=portao.nome%></p>
                   </div>
                   <div class="col-12 col-md-6 text-center">
                     <div id="map" class="local"></div>

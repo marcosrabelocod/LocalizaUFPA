@@ -1,14 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 body, html{
     margin: 0;
     padding: 0;
     height: 100%; /* Faz com que o body e o html ocupem 100% da altura */
 }
 #map {
+    position: relative;
     width: 100%;  /* 100% da largura da tela */
     height: 92%; /* 100% da altura da tela */
  }
 .local{
-    min-height: 300px;
+    min-height: 400px;
     border-radius: 10px;
     box-shadow: 2px 2px 3px #888;
+}
+
+#homesearth{
+    position: absolute; /* Para colocar o card em cima do mapa */
+    top: 50%; /* Centralizar verticalmente */
+    left: 50%; /* Centralizar horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta o deslocamento */
+    z-index: 1000; /* Garante que o card fique acima do mapa */
+    width: 80%;
+    opacity: 0.85; /* Define opacidade */
+    border-radius: 10px; /* Bordas arredondadas */
 }

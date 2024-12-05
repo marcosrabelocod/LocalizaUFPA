@@ -49,8 +49,24 @@ router.get('/local/:id', async (req, res) => {
             throw new Error('Nenhum local encontrado para este ID');
         }
 
+        //dados das tabelas auxiliares
+        let origem = await db.selectId('localidade', local.origem);
+        const setor = await db.selectId('setor', local.setor);
+        const portao = await db.selectId('portao', local.portao)
+
+        if (!origem || Origem.length === 0) {
+            origem = {
+                id : local.id,
+                nome: local.nome
+            }
+        }
         // Renderiza a página com os dados encontrados
-        res.render('local', { local }); // Pode ajustar para passar `local` ao frontend
+        res.render('local', { 
+            local:local,
+            origem:origem,
+            setor: setor,
+            portao: portao
+        }); // Pode ajustar para passar `local` ao frontend
         console.log(local);
     } catch (error) {
         // Trata erros ocorridos durante a execução
@@ -63,6 +79,35 @@ router.get('/local/:id', async (req, res) => {
         res.status(400).send('Ocorreu um erro. Verifique o ID informado.');
     }
 });
+router.get("/comit", (req, res) =>{
+    var search = req.query.search;
+    res.redirect('/pesquisa/' + search)
+});
+
+router.get('/pesquisa/:nome', async (req, res) => {
+    try {
+        // Obtém o ID da URL
+        const nome = req.params.nome;
+
+        // Tenta buscar o local no banco de dados
+        const dados = await db.selectPesquisa(nome);
+
+        // Valida se o ID é um número válido (opcional, dependendo da necessidade)
+        if (!dados || dados.length === 0) {
+            return res.render('pesquisa', {
+                dados: [],
+                mensagem: 'Nenhum local encontrado.' // Exibe uma mensagem no frontend
+            });
+        }
+        res.render('pesquisa', {
+            dados: dados
+        });
+    }
+    catch{
+        res.redirect("/")
+        console.log('erro')
+    }
+})
 
 // Exportar o roteador
 module.exports = router;

@@ -3,7 +3,7 @@ const router = express.Router(); // Criando o roteador
 
 // Rota principal para exibir uma mensagem
 router.get('/', (req, res) => {
-    res.send('Bem-vindo à rota do mapa!');
+    res.render('home');
 });
 
 // Outra rota como exemplo para dados via POST
