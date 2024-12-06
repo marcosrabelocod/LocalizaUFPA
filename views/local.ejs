@@ -31,15 +31,17 @@
                     <p><strong>Portão:</strong> <%=portao.nome%></p>
                   </div>
                   <div class="col-12 col-md-6 text-center">
-                    <div id="map" class="local"></div>
+                      <div id="map" class="local"></div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
     </main>
-
+    <span id="latitude" class="hidden"><%=local.latitude%></span>
+    <span id="longitude" class="hidden"><%=local.longitude%></span>
 </body>
-<script src="/js/webmap.js"></script>
+<script src="/js/maplocal.js"></script>
+<script src="/js/functions.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>

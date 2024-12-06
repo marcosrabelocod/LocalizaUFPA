@@ -11,11 +11,11 @@ body, html{
     position: relative;
     width: 100%;  /* 100% da largura da tela */
     height: 92%; /* 100% da altura da tela */
- }
-.local{
+    background-color: #ccc; /* Exemplo de fundo para teste */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; /* Animação para transição suave */
     min-height: 400px;
     border-radius: 10px;
-    box-shadow: 2px 2px 3px #888;
 }
 
 #homesearth{
@@ -27,4 +27,8 @@ body, html{
     width: 80%;
     opacity: 0.85; /* Define opacidade */
     border-radius: 10px; /* Bordas arredondadas */
+}
+
+.hidden{
+    display: none;
 }

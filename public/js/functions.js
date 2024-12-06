@@ -1,0 +1,1 @@
+//função de expanção do mapa

@@ -67,7 +67,6 @@ router.get('/local/:id', async (req, res) => {
             setor: setor,
             portao: portao
         }); // Pode ajustar para passar `local` ao frontend
-        console.log(local);
     } catch (error) {
         // Trata erros ocorridos durante a execução
         console.error('Erro ao buscar o local:', error.message);
