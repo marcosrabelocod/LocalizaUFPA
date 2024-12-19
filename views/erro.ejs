@@ -14,35 +14,15 @@
         <div class="container mt-4">
             <div class="card">
               <div class="card-header">
-                <h5 class="mb-0">Detalhes da Localização</h5>
+                <h5 class="mb-0">ERRO</h5>
               </div>
               <div class="card-body">
-                <div class="row">
-                  <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
-                    <h5 class="card-title">Informações</h5>
-                    <p><strong>Local:</strong> <%=local.nome%></p>
-                    <p>
-                      <strong>Origem:</strong> 
-                      <a href="<%= origem.id%>" class="btn btn-outline-secondary">
-                        <%= origem.nome%>                      
-                      </a>
-                    </p>
-                    <p><strong>Setor:</strong> <%=setor.nome%></p>
-                    <p><strong>Portão:</strong> <%=portao.nome%></p>
-                  </div>
-                  <div class="col-12 col-md-6 text-center" id="mapa">
-                      <div id="map" class="local"></div>
-                      <div class="d-grid gap-2">
-                        <a href="/mapa/<%=local.latitude%>/<%=local.longitude%>"class="btn btn-primary" type="button">Ampliar</a>
-                      </div>
-                  </div>
-                </div>
+                <p>Foi localizado um erro, <%= mensagem%></p>
+                <a href="/" class="btn btn-primary">Voltar para Area principal</a>
               </div>
             </div>
           </div>
     </main>
-    <span id="latitude" class="hidden"><%=local.latitude%></span>
-    <span id="longitude" class="hidden"><%=local.longitude%></span>
 </body>
 <script src="/js/maplocal.js"></script>
 <script src="/js/functions.js"></script>

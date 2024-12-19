@@ -75,7 +75,9 @@ router.get('/local/:id', async (req, res) => {
         console.log('erro');
 
         // Por enquanto, envia uma resposta genérica ao cliente
-        res.status(400).send('Ocorreu um erro. Verifique o ID informado.');
+        res.render('erro',{
+            mensagem: 'Localidade não encontrada'
+        });
     }
 });
 router.get("/comit", (req, res) =>{
@@ -93,9 +95,8 @@ router.get('/pesquisa/:nome', async (req, res) => {
 
         // Valida se o ID é um número válido (opcional, dependendo da necessidade)
         if (!dados || dados.length === 0) {
-            return res.render('pesquisa', {
-                dados: [],
-                mensagem: 'Nenhum local encontrado.' // Exibe uma mensagem no frontend
+            return res.render('erro',{
+                mensagem: 'Localidade não encontrada'
             });
         }
         res.render('pesquisa', {

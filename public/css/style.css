@@ -17,6 +17,17 @@ body, html{
     min-height: 400px;
     border-radius: 10px;
 }
+#fullScreen{
+    top: 0px;
+    left: 0px;
+    position:absolute;
+    z-index: 1000;
+    display: none;
+}
+#bigmap{
+    height: 1000px;
+    width: 1000px;
+}
 
 #homesearth{
     position: absolute; /* Para colocar o card em cima do mapa */

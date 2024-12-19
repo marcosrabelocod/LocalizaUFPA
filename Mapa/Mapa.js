@@ -11,5 +11,13 @@ router.get('/mapa', (req, res) => {
     res.render('mpa')
 });
 
+router.get('/mapa/:latitude/:longitude', (req, res) => {
+    const latitude = req.params.latitude
+    const longitude = req.params.longitude
+    res.render('mpaLocal',{
+        latitude:latitude,
+        longitude:longitude
+    })
+});
 // Exportar o roteador
 module.exports = router;
