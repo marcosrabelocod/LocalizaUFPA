@@ -1,7 +1,7 @@
 import type { AppLocation } from '../types';
 
 // URL base do seu json-server
-const API_URL = 'http://localhost:3001/locations';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/locations';
 
 export const LocationService = {
   /**

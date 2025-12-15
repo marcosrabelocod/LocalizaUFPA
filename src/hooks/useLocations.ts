@@ -1,52 +1,100 @@
-import { useState, useEffect } from 'react';
-import type { AppLocation } from '../types';
-import { LocationService } from '../services/LocationServices';
+import { useState } from 'react';
+import type { AppLocation, LocationRelation } from '../types.ts';
+import { ALL_LOCATIONS, LOCATION_RELATIONS } from '../constants';
+
+
 
 export const useLocations = () => {
-  const [locations, setLocations] = useState<AppLocation[]>([]);
-  const [loading, setLoading] = useState(true); // Estado de carregamento útil para UI
-  const [error, setError] = useState<string | null>(null);
 
-  // Função para recarregar os dados (útil após criar/editar algo)
-  const fetchLocations = async () => {
-    setLoading(true);
-    try {
-      const data = await LocationService.getAll();
-      setLocations(data);
-      setError(null);
-    } catch (err) {
-      setError('Falha ao carregar localidades.');
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [locations, setLocations] = useState<AppLocation[]>(ALL_LOCATIONS);
 
-  // Carrega os dados assim que o hook é montado
-  useEffect(() => {
-    fetchLocations();
-  }, []);
+  const [relations, setRelations] = useState<LocationRelation[]>(LOCATION_RELATIONS);
 
-  const getLocationById = (id: number) => {
-    return locations.find(loc => loc.id === id);
-  };
+
 
   /**
-   * Atualiza uma localidade (vamos implementar o PUT/PATCH no serviço depois)
-   * Por enquanto, atualiza apenas o estado local para refletir na tela
-   */
+   * Atualiza uma localidade existente e gerencia a criação de relações
+   * se a localidade for do tipo departamento.
+  */
+
   const updateLocation = (updatedLocation: AppLocation) => {
-    setLocations(prev => 
-      prev.map(loc => loc.id === updatedLocation.id ? updatedLocation : loc)
+
+    setLocations((prevLocations) =>
+
+      prevLocations.map((loc) =>
+
+        loc.id === updatedLocation.id ? updatedLocation : loc
+
+      )
+
     );
-    // Futuro: chamar LocationService.update(updatedLocation) aqui
+
+
+
+    // Se for um departamento e tiver um pai, registramos a relação
+
+    if (updatedLocation.locationType === 'DEPARTMENT' && updatedLocation.parentId) {
+
+      // Verifica se já existe uma relação para este departamento para não duplicar
+
+      const relationExists = relations.some(
+
+        r => r.idDepartment === updatedLocation.id && r.idBuilding === updatedLocation.parentId
+
+      );
+
+
+
+      if (!relationExists) {
+
+        const newRelation: LocationRelation = {
+
+          id: Date.now(), // Gera um ID simples
+
+          idBuilding: updatedLocation.parentId,
+
+          idDepartment: updatedLocation.id
+
+        };
+
+       
+
+        setRelations(prev => [...prev, newRelation]);
+
+        console.log("Relação Salva:", newRelation); // Log para confirmar no console
+
+      }
+
+    }
+
   };
 
-  return { 
-    locations, 
-    loading, // Agora você pode mostrar um spinner se quiser
-    error,
-    updateLocation, 
-    getLocationById,
-    refresh: fetchLocations // Expor função para forçar recarregamento
+
+
+  /**
+
+   * Busca e retorna um objeto de localidade baseado no seu ID numérico.
+
+   */
+
+  const getLocationById = (id: number): AppLocation | undefined => {
+
+    return locations.find(loc => loc.id === id);
+
   };
+
+
+
+  return {
+
+    locations,
+
+    relations,
+
+    updateLocation,
+
+    getLocationById
+
+  };
+
 };
