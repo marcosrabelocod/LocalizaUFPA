@@ -1,0 +1,162 @@
+
+.locations-list-container {
+  /* TRAVAMENTO DE POSIÇÃO */
+  /* Isso força a div a ocupar exatamente o espaço do <main> */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* ROLAGEM */
+  /* Agora que a altura está travada, o overflow vai gerar scroll */
+  overflow-y: auto; 
+  -webkit-overflow-scrolling: touch; /* Rolagem suave no iOS */
+
+  /* ESTILO VISUAL */
+  background-color: #f9fafb;
+  padding: 1.5rem;
+  
+  /* Garante que o padding não aumente o tamanho total (box model) */
+  box-sizing: border-box; 
+}
+
+.locations-list-header {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.header-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.locations-list-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+
+.locations-count {
+  background-color: #eff6ff;
+  color: #1548c0;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Search Box Styles */
+.search-box-container {
+  position: relative;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: all 0.2s;
+  background-color: white;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #1548c0;
+  box-shadow: 0 0 0 3px rgba(21, 72, 192, 0.1);
+}
+
+/* List Styles */
+.locations-simple-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.location-simple-item {
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f3f4f6;
+  transition: background-color 0.15s;
+}
+
+.location-simple-item.clickable {
+  cursor: pointer;
+}
+
+.location-simple-item:last-child {
+  border-bottom: none;
+}
+
+.location-simple-item:hover {
+  background-color: #f0f9ff; /* Azul muito claro no hover */
+}
+
+.item-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.item-icon {
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-name {
+  font-size: 1rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+.item-type {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.item-arrow {
+  color: #d1d5db;
+}
+
+.location-simple-item:hover .item-arrow {
+  color: #1548c0;
+}
+
+.empty-state {
+  padding: 2rem;
+  text-align: center;
+  color: #6b7280;
+  font-style: italic;
+}

@@ -1,0 +1,81 @@
+/* Container principal (Pai) - Mantém overflow hidden para não aparecer barra de rolagem */
+.map-full-screen {
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; 
+  background-color: #e5e7eb;
+  /* Cria um contexto de isolamento para evitar vazamento de z-index */
+  isolation: isolate; 
+}
+/* O Mapa Leaflet (Filho) */
+.leaflet-container {
+  /* Truque: Fazemos o mapa ser MUITO maior que a tela (150% ou mais) */
+  width: 220vw;  
+  height: 200vh;
+
+  /* Centralizamos esse mapa gigante na tela usando posicionamento absoluto */
+  position: absolute;
+  top: 40%;
+  left: 55%;
+
+  /* A ordem do transform é crucial:
+     1. translate(-50%, -50%): Puxa o mapa de volta para o centro exato.
+     2. rotate(-30deg): Aplica sua rotação desejada.
+     3. scale(1.2): Um leve zoom se quiser, mas como aumentamos width/height, 
+        talvez nem precise de escala agressiva (o que melhora a qualidade do texto).
+  */
+  transform: translate(-50%, -40%) rotate(-30deg);
+  z-index: 1;
+}
+
+/* Overlay de atribuição customizado */
+.ufpa-attribution-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 4px 8px;
+  font-size: 10px;
+  color: #4b5563;
+  pointer-events: none;
+  z-index: 900; /* Reduzido para ficar abaixo do painel */
+  border-top-left-radius: 4px;
+  
+}
+
+/* --- Custom Map Markers --- */
+.custom-marker-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  border: 2px solid white;
+  transition: transform 0.2s;
+  /* Rotação inversa para manter o ícone em pé apesar da rotação do mapa */
+  transform: rotate(30deg); 
+}
+
+.custom-marker-pin svg {
+  width: 18px;
+  height: 18px;
+}
+
+.custom-marker-pin:hover {
+  /* Mantém a rotação e aplica escala */
+  transform: rotate(30deg) scale(1.1);
+  z-index: 1000 !important;
+}
+
+/* Categoria Colors */
+.marker-admin { background-color: #1548c0; } /* Blue UFPA */
+.marker-academic { background-color: #0891b2; } /* Cyan */
+.marker-health { background-color: #dc2626; } /* Red */
+.marker-food { background-color: #d97706; } /* Amber/Orange */
+.marker-library { background-color: #7e22ce; } /* Purple */
+.marker-tech { background-color: #4f46e5; } /* Indigo */
+.marker-other { background-color: #6b7280; } /* Gray */

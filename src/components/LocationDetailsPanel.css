@@ -1,0 +1,107 @@
+/* --- Painel de Detalhes (Slide-up Sheet) --- */
+.location-details-panel {
+  position: absolute;
+  background-color: white;
+  z-index: 10000; /* Garante que fique acima do mapa */
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+
+  /* === ESTILOS MOBILE (Padrão) === */
+  /* Fixado no fundo, ocupando largura total */
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: auto; /* Garante que não estique para cima */
+  height: 50%; 
+  width: 100%;
+  
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  border-bottom-left-radius: 0; /* Remove bordas arredondadas em baixo no mobile */
+  border-bottom-right-radius: 0;
+
+  /* Estado FECHADO (Mobile): Empurrado 100% para baixo */
+  transform: translate3d(0, 100%, 0); 
+  
+  padding: 1.5rem;
+  box-sizing: border-box; /* Importante para o padding não aumentar o tamanho total */
+}
+
+/* Estado ABERTO (Mobile e Desktop Base) */
+.location-details-panel.open {
+  transform: translate3d(0, 0, 0);
+}
+
+/* Header do Painel */
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.75rem;
+  flex-shrink: 0; /* Impede que o header seja esmagado */
+}
+
+/* ... (Mantenha os estilos internos de .panel-title-group, .panel-category-icon etc. iguais) ... */
+.panel-title-group { display: flex; align-items: center; gap: 0.75rem; }
+.panel-category-icon { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; color: white; flex-shrink: 0; }
+.bg-admin { background-color: #1548c0; }
+.bg-academic { background-color: #0891b2; }
+.bg-health { background-color: #dc2626; }
+.bg-food { background-color: #d97706; }
+.bg-library { background-color: #7e22ce; }
+.bg-tech { background-color: #4f46e5; }
+.bg-other { background-color: #6b7280; }
+.panel-title { font-size: 1.25rem; font-weight: 700; color: #1f2937; margin: 0; line-height: 1.2; }
+.panel-category-label { display: block; font-size: 0.75rem; color: #6b7280; font-weight: 500; margin-top: 2px; text-transform: uppercase; }
+.panel-close-btn { background: none; border: none; color: #9ca3af; cursor: pointer; padding: 4px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: -4px; margin-right: -4px; }
+.panel-close-btn:hover { background-color: #f3f4f6; color: #111827; }
+.info-row { display: flex; flex-direction: column; gap: 0.25rem; }
+.info-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #6b7280; font-weight: 600; }
+.info-value { font-size: 0.95rem; color: #374151; font-weight: 400; }
+
+/* Conteúdo do Painel */
+.panel-content {
+  flex: 1;
+  overflow-y: auto; /* Permite scroll interno se o conteúdo for grande */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 0.5rem;
+  min-height: 0; /* Correção vital para Flexbox scrollar corretamente */
+}
+
+/* === ESTILOS DESKTOP (Tablet pra cima) === */
+@media (min-width: 768px) {
+  .location-details-panel {
+    /* 1. RESETAR POSIÇÃO MOBILE */
+    left: 2rem;
+    right: auto; /* Desliga o esticar horizontal */
+    top: auto;
+    
+    /* AQUI ESTÁ A CORREÇÃO: */
+    /* Subimos 2rem do fundo. Se estava cortado, provavelmente o 'height: 50%' do mobile estava brigando */
+    bottom: 2rem; 
+    
+    /* 2. REDEFINIR TAMANHO */
+    width: 380px; 
+    height: auto; /* Altura automática baseada no conteúdo */
+    max-height: 80vh; /* Limite para não estourar a tela */
+    
+    border-radius: 16px; /* Borda redonda completa */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    
+    /* 3. ESTADO FECHADO (Desktop): Esconde para a ESQUERDA, não para baixo */
+    /* Importante usar translate3d para garantir performance e sobrescrever o Y */
+    transform: translate3d(-120%, 0, 0); 
+  }
+
+  /* 4. ESTADO ABERTO (Desktop) */
+  /* Precisamos ser específicos para vencer qualquer regra anterior */
+  .location-details-panel.open {
+    transform: translate3d(0, 0, 0);
+  }
+}

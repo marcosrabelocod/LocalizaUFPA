@@ -1,0 +1,48 @@
+
+/* Container principal do mapa ajustado para flex layout */
+.map-full-screen {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: #e5e7eb;
+}
+
+/* Classe necessária para o React Leaflet ocupar 100% do pai */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+
+/* Estilização do Popup Personalizado */
+.ufpa-popup-content {
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.ufpa-popup-title {
+  display: block;
+  color: #166534; /* green-800 matching UFPA identity */
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.ufpa-popup-category {
+  font-size: 0.75rem;
+  color: #4b5563; /* gray-600 */
+}
+
+/* Overlay de atribuição customizado */
+.ufpa-attribution-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 4px 8px;
+  font-size: 10px;
+  color: #4b5563;
+  pointer-events: none;
+  z-index: 1000;
+  border-top-left-radius: 4px;
+}
